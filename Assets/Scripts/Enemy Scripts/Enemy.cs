@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public int life = 1;
+    public float life = 1;
     public float speed = 2f;
     public int earn = 10;
 
@@ -85,12 +85,12 @@ public class Enemy : MonoBehaviour
         }
     }
 
-    public virtual void TakeDamage(int damage)
+    public virtual void TakeDamage(float damage)
     {
         if (life <= 0) return;
 
         life -= damage;
-        Debug.Log("Inmigrant took " + damage + " damage! Remaining life: " + life);
+        Debug.Log("Enemy took " + damage + " damage! Remaining life: " + life);
 
         // When the immigrant dies
         if (life <= 0 ) //&& GameManager.manager != null)

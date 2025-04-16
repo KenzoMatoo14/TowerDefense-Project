@@ -2,6 +2,8 @@ using UnityEngine;
 
 public class Tower : MonoBehaviour
 {
+    [Header("Attributes")]
+
     public int damage = 1;
     public float range = 1;
     public int cost = 1;
