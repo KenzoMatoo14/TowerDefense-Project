@@ -63,16 +63,9 @@ public class PathGenerator : MonoBehaviour
 
             waypoint.transform.position = newPosition;
             waypoint.transform.parent = transform;
-
-            // Generar caminos en intervalos de 5 en 5
-            if(i == 0)
-            {
-                GameObject path = Instantiate(Path, currentPosition, Quaternion.identity);
-            }
-            else
-            {
-                GeneratePathBetween(currentPosition, newPosition);
-            }
+           
+            GeneratePathBetween(currentPosition, newPosition);
+            
 
             currentPosition = newPosition; // Actualizar la posición actual
 
@@ -81,10 +74,11 @@ public class PathGenerator : MonoBehaviour
     }
     void GeneratePathBetween(Vector3 start, Vector3 end)
     {
+        //GameObject firstpath = Instantiate(Path, start, Quaternion.identity);
         Vector3 direction = (end - start).normalized; // Dirección hacia el siguiente vértice
         float distance = Vector3.Distance(start, end); // Distancia total
 
-        for (float d = 5; d <= distance; d += 5) // Coloca Path en intervalos de 5
+        for (float d = 0; d <= distance; d += 5) // Coloca Path en intervalos de 5
         {
             Vector3 position = start + direction * d;
             GameObject path = Instantiate(Path, position, Quaternion.identity);
