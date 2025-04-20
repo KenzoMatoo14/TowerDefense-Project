@@ -33,6 +33,7 @@ public class PathGenerator : MonoBehaviour
         }
 
         GeneratePath();
+        HideObjectsWithTag("BlockedTowerInstance");
     }
 
     void GeneratePath()
@@ -41,6 +42,8 @@ public class PathGenerator : MonoBehaviour
         Vector3 newPosition = Vector3.zero;
         Vector3 currentPathPosition = Vector3.zero;
         Vector3 newPathPosition = Vector3.zero;
+
+        Instantiate(Path, currentPosition, Quaternion.identity);
 
         for (int i = 0; i < numberOfWaypoints; i++)
         {
@@ -78,11 +81,24 @@ public class PathGenerator : MonoBehaviour
         Vector3 direction = (end - start).normalized; // Dirección hacia el siguiente vértice
         float distance = Vector3.Distance(start, end); // Distancia total
 
-        for (float d = 0; d <= distance; d += 5) // Coloca Path en intervalos de 5
+        for (float d = 5; d <= distance; d += 5) // Coloca Path en intervalos de 5
         {
             Vector3 position = start + direction * d;
             GameObject path = Instantiate(Path, position, Quaternion.identity);
             path.transform.parent = transform;
+        }
+    }
+
+    private void HideObjectsWithTag(string tag)
+    {
+        GameObject[] objects = GameObject.FindGameObjectsWithTag(tag);
+        foreach (GameObject obj in objects)
+        {
+            MeshRenderer renderer = obj.GetComponent<MeshRenderer>();
+            if (renderer != null)
+            {
+                renderer.enabled = false;
+            }
         }
     }
 

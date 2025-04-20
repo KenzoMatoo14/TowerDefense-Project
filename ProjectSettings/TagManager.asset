@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 3
   tags:
   - Enemy
+  - BlockedTowerInstance
+  - Ground
+  - Tower
   layers:
   - Default
   - TransparentFX
